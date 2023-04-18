@@ -1,6 +1,9 @@
 {
     "website": {
-        "url": "https://www.usgs.gov/news/national-news-release/new-us-geological-survey-report-assesses-risk-once-century-geomagnetic",
+        "urls": {
+            "url1": "https://www.usgs.gov/news/national-news-release/new-us-geological-survey-report-assesses-risk-once-century-geomagnetic",
+            "url2": "https://www.usgs.gov/programs/geomagnetism/science/keeping-lights-north-america"
+        },
         "limit": 30,
         "search": "p"
     }

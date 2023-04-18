@@ -5,8 +5,8 @@ const fs = require("fs");
 let data = fs.readFileSync("scrape-list.json", "utf8")
 let websites = Object.values(JSON.parse(data));
 
-async function scrape(website) {
-    axios(website.url)
+async function scrape(website, url) {
+    axios(url)
         .then(response => {
             const html = response.data;
             const $ = cheerio.load(html);
@@ -25,5 +25,7 @@ async function scrape(website) {
 }
 
 websites.forEach(website => {
-    scrape(website);
+    for (url in website.urls) {
+        scrape(website, url);
+    }
 });
