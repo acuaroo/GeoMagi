@@ -2,9 +2,19 @@
     "website": {
         "urls": {
             "url1": "https://www.usgs.gov/news/national-news-release/new-us-geological-survey-report-assesses-risk-once-century-geomagnetic",
-            "url2": "https://www.usgs.gov/programs/geomagnetism/science/keeping-lights-north-america"
+            "url2": "https://www.usgs.gov/programs/geomagnetism/science/keeping-lights-north-america",
+            "url3": "https://www.usgs.gov/programs/earthquake-hazards/science/auroras-and-earthquakes-strange-companions",
+            "url4": "https://www.usgs.gov/faqs/do-solar-flares-or-magnetic-storms-space-weather-cause-earthquakes",
+            "url5": "https://www.usgs.gov/faqs/does-earths-magnetic-field-affect-human-health",
+            "url6": "https://www.usgs.gov/faqs/what-are-hazards-magnetic-storms",
+            "url7": "https://www.usgs.gov/publications/modeling-geomagnetic-induction-submarine-cables",
+            "url8": "https://www.usgs.gov/publications/simultaneous-observations-geoelectric-and-geomagnetic-fields-produced-magnetospheric",
+            "url9": "https://www.usgs.gov/publications/adjusted-geomagnetic-data-theoretical-basis-and-validation"
         },
+        "depth": 2,
+        "searchlim": 100,
         "limit": 30,
-        "search": "p"
+        "search": "p",
+        "sublink": "href"
     }
 }
