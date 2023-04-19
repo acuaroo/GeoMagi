@@ -11,10 +11,7 @@
             "url8": "https://www.usgs.gov/publications/simultaneous-observations-geoelectric-and-geomagnetic-fields-produced-magnetospheric",
             "url9": "https://www.usgs.gov/publications/adjusted-geomagnetic-data-theoretical-basis-and-validation"
         },
-        "depth": 2,
-        "searchlim": 100,
         "limit": 30,
-        "search": "p",
-        "sublink": "href"
+        "search": "p"
     }
 }

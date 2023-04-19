@@ -18,11 +18,8 @@
   },
   "homepage": "https://github.com/acuaroo/geo-magi#readme",
   "dependencies": {
-    "ak-url-validate": "^1.0.4",
     "axios": "^1.3.5",
-    "cheerio": "^1.0.0-rc.12",
-    "does-url-exist": "^0.0.1",
-    "url-exist": "^3.0.1"
+    "cheerio": "^1.0.0-rc.12"
   },
   "type": "module"
 }
