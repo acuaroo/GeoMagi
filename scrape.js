@@ -8,6 +8,8 @@ let websites = Object.values(JSON.parse(data));
 let scraped = [];
 let textData = [];
 
+let totalWords = 0;
+
 function scrape(website, url) {
     axios(url)
         .then(response => {
@@ -24,6 +26,7 @@ function scrape(website, url) {
                 
                 if (words > website.limit && !text.includes("...")) {
                     if (textData.includes(text)) return;
+                    totalWords += words
                     console.log(text);
                     textData.push(text);
                 }
@@ -52,6 +55,8 @@ setTimeout(() => {
     writeData = writeData.replace(/\t/g, "");
     writeData = writeData.replace(/\n\n/g, "\n");
     writeData = writeData.replace(/,\n/g, "\n");
+
+    console.log("total words: " + totalWords);
 
     fs.writeFileSync("data.txt", writeData, "utf8");
 }, waitTime);
