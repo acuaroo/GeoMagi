@@ -55,7 +55,7 @@ Promise.all(scrapePromises).then(() => {
 
     writeData = writeData.trim();
     
-    console.log("total words: " + totalWords);
+    console.log("estimated words (does not account for \\n or \\t): " + totalWords);
 
     fs.writeFileSync("data.txt", writeData, "utf8");
 }).catch(console.error);
