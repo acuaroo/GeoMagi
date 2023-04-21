@@ -1,10 +1,10 @@
-# geo-magi
+# GeoMagi
 
 > *LLM finetuned on data about geomagnetism*
 
 ---
 
-## data collection
+## Data Collection
 
 `./extension/` can be loaded into the browser
 
