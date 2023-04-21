@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GeoMagi Data Collection</title>
+    <script src="popup.js"></script>
+  </head>
+  <style>
+    body {
+      min-width: 200px;
+      min-height: 100px;
+      padding: 10px;
+      font-family: sans-serif;
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+
+    ul {
+      margin-top: 0;
+      padding-left: 20px;
+    }
+
+    button {
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    #statusMessage {
+      margin-top: 10px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+  <body>
+    <h3>GeoMagi Data Collection</h3>
+    
+    <p id="statusMessage"></p>
+
+    <button id="addButton">Add Current URL</button>
+    <button id="clearButton">Clear JSON List</button>
+    <button id="exportButton">Export List as JSON</button>
+  </body>
+</html>
