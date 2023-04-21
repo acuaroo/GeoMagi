@@ -4,7 +4,6 @@ import fs from "fs";
 
 let data = fs.readFileSync("scrape-list.json", "utf8")
 let websites = Object.values(JSON.parse(data));
-websites = Object.values(websites[0]);
 
 let scraped = [];
 let textData = [];
@@ -38,8 +37,12 @@ function scrape(url, search) {
 
 let scrapePromises = [];
 
-websites.forEach(website => {
-    scrapePromises.push(scrape(website.currentUrl, website.text));
+websites.forEach(files => {
+    files = Object.values(files)
+
+    files.forEach(website => {
+        scrapePromises.push(scrape(website.currentUrl, website.text));
+    });
 });
 
 Promise.all(scrapePromises).then(() => {
@@ -47,10 +50,11 @@ Promise.all(scrapePromises).then(() => {
     writeData = writeData.substring(1, writeData.length - 1);
 
     writeData = writeData.replace(/\"/g, "");
-    writeData = writeData.replace(/\t/g, "");
-    writeData = writeData.replace(/\n\n/g, "\n");
-    writeData = writeData.replace(/,\n/g, "\n");
+    writeData = writeData.replace(/\\t/g, "");
+    writeData = writeData.replace(/\\n/g, "");
 
+    writeData = writeData.trim();
+    
     console.log("total words: " + totalWords);
 
     fs.writeFileSync("data.txt", writeData, "utf8");
