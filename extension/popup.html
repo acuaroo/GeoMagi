@@ -26,6 +26,11 @@
       margin-bottom: 10px;
     }
 
+    input[type="text"] {
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
     #statusMessage {
       margin-top: 10px;
       color: green;
@@ -36,6 +41,9 @@
     <h3>GeoMagi Data Collection</h3>
     
     <p id="statusMessage"></p>
+
+    <label for="textInput">Tag Type</label>
+    <input type="text" id="textInput" placeholder="e.g span for <span> tag">
 
     <button id="addButton">Add Current URL</button>
     <button id="clearButton">Clear JSON List</button>

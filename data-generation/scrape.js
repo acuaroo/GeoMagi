@@ -4,27 +4,29 @@ import fs from "fs";
 
 let data = fs.readFileSync("scrape-list.json", "utf8")
 let websites = Object.values(JSON.parse(data));
+websites = Object.values(websites[0]);
 
 let scraped = [];
 let textData = [];
 
 let totalWords = 0;
+let limit = 30;
 
-function scrape(website, url) {
-    axios(url)
+function scrape(url, search) {
+    return axios(url)
         .then(response => {
             if (scraped.includes(url)) return;
             scraped.push(url);
 
             const html = response.data;
             const $ = cheerio.load(html);
-            const paragraphs = $(website.search);
+            const paragraphs = $(search);
 
             paragraphs.each(function() {
                 const text = $(this).text();
                 const words = text.split(/\s+/).length;
                 
-                if (words > website.limit && !text.includes("...")) {
+                if (words > limit && !text.includes("...")) {
                     if (textData.includes(text)) return;
                     totalWords += words
                     console.log(text);
@@ -34,20 +36,13 @@ function scrape(website, url) {
         }).catch(console.error);
 }
 
-let totalUrls = 0;
+let scrapePromises = [];
 
 websites.forEach(website => {
-    let urls = Object.values(website.urls);
-
-    urls.forEach(url => {
-        totalUrls += 1;
-        scrape(website, url);
-    });
+    scrapePromises.push(scrape(website.currentUrl, website.text));
 });
 
-let waitTime = totalUrls * 1000;
-
-setTimeout(() => {
+Promise.all(scrapePromises).then(() => {
     let writeData = JSON.stringify(textData, null, 1);
     writeData = writeData.substring(1, writeData.length - 1);
 
@@ -59,4 +54,4 @@ setTimeout(() => {
     console.log("total words: " + totalWords);
 
     fs.writeFileSync("data.txt", writeData, "utf8");
-}, waitTime);
+}).catch(console.error);

@@ -1,12 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
+    chrome.storage.local.get(['inputValue'], function(result) {
+        if (result.inputValue) {
+            document.getElementById('textInput').value = result.inputValue;
+        }
+    });
+
     document.getElementById('addButton').addEventListener('click', function() {
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
             var currentUrl = tabs[0].url;
+            var text = document.getElementById('textInput').value;
 
             chrome.storage.local.get('urls', function(result) {
                 var urls = result.urls || [];
 
-                urls.push(currentUrl);
+                urls.push({currentUrl, text});
 
                 chrome.storage.local.set({'urls': urls}, function() {
                     console.log('URL added to list');
@@ -41,6 +48,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    document.getElementById('textInput').addEventListener('input', function() {
+        chrome.storage.local.set({inputValue: document.getElementById('textInput').value});
+    });
+      
+
     function setStatusMessage(message) {
         document.getElementById('statusMessage').textContent = message;
 
@@ -48,5 +60,4 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('statusMessage').textContent = '';
         }, 3000);
     }
-    
 });
