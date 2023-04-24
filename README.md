@@ -4,6 +4,10 @@
 
 ---
 
+![gmvsgpt2-cropped](https://user-images.githubusercontent.com/67112172/234118695-aa479468-1e3a-461b-b8f4-9c16c853ee02.gif)
+
+---
+
 ## Data Collection
 
 `./extension/` can be loaded into the browser
