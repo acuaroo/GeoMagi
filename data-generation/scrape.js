@@ -18,6 +18,8 @@ function scrape(url, search) {
             scraped.push(url);
 
             const html = response.data;
+
+            // note: deprecated
             const $ = cheerio.load(html);
             const paragraphs = $(search);
 
@@ -25,9 +27,13 @@ function scrape(url, search) {
                 const text = $(this).text();
                 const words = text.split(/\s+/).length;
                 
+                // ... is to remove article summaries, as no
+                // actual text will have that.
+                
                 if (words > limit && !text.includes("...")) {
                     if (textData.includes(text)) return;
                     totalWords += words
+
                     console.log(text);
                     textData.push(text);
                 }
@@ -49,15 +55,16 @@ Promise.all(scrapePromises).then(() => {
     let writeData = JSON.stringify(textData, null, 1);
     writeData = writeData.substring(1, writeData.length - 1);
 
+    // remove quotes, tabs, and newlines
     writeData = writeData.replace(/\"/g, "");
     writeData = writeData.replace(/\\t/g, "");
     writeData = writeData.replace(/\\n/g, "");
-    writeData = writeData.replace(/(.{200}\s)/g, "$1\n")
 
+    // every 200 words, force break into a new line
+    writeData = writeData.replace(/(.{200}\s)/g, "$1\n")
     writeData = writeData.replace(/^\s*[\r]/gm, "");
 
     writeData = writeData.trim();
-    
 
     console.log("estimated words (does not account for \\n or \\t): " + totalWords);
 
