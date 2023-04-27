@@ -47,6 +47,8 @@ websites.forEach(files => {
     files = Object.values(files)
 
     files.forEach(website => {
+        // todo: check if file ends in .pdf
+        // if so, divert to new scrapePDF function
         scrapePromises.push(scrape(website.currentUrl, website.text));
     });
 });
