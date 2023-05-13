@@ -34,7 +34,7 @@ function scrape(url, search) {
                     if (textData.includes(text)) return;
                     totalWords += words
 
-                    console.log(text);
+                    //console.log(text);
                     textData.push(text);
                 }
             });
@@ -47,11 +47,16 @@ websites.forEach(files => {
     files = Object.values(files)
 
     files.forEach(website => {
-        // todo: check if file ends in .pdf
-        // if so, divert to new scrapePDF function
         scrapePromises.push(scrape(website.currentUrl, website.text));
     });
 });
+
+let report = fs.readFileSync("WMM2020_Report.txt", "utf8");
+let reportWords = report.split(/\s+/).length;
+
+totalWords += reportWords;
+textData.push(report);
+
 
 Promise.all(scrapePromises).then(() => {
     let writeData = JSON.stringify(textData, null, 1);
